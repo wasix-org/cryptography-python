@@ -336,9 +336,8 @@ dependencies = [
 
 [[package]]
 name = "target-lexicon"
-version = "0.12.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4873307b7c257eddcb50c9bedf158eb669578359fb28428bef438fec8e6ba7c2"
+version = "0.13.2"
+source = "git+https://github.com/wasix-org/target-lexicon.git?branch=wasix-0.13.2#a5a360191e8e328c74b487ace6c9c58bb3fc94ef"
 
 [[package]]
 name = "unicode-ident"
