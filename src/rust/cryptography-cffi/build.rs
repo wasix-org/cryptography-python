@@ -60,6 +60,9 @@ fn main() {
     let openssl_c = Path::new(&out_dir).join("_openssl.c");
 
     let mut build = cc::Build::new();
+    if std::env::var("CARGO_CFG_TARGET_VENDOR").unwrap() == "wasmer" {
+        build.compiler("wasixcc");
+    }
     build
         .file(openssl_c)
         .includes(std::env::var_os("DEP_OPENSSL_INCLUDE"))
