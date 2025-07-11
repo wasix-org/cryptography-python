@@ -27,9 +27,10 @@ cryptography-x509-verification = { path = "cryptography-x509-verification" }
 cryptography-openssl = { path = "cryptography-openssl" }
 pem = { version = "3", default-features = false }
 openssl = "0.10.66"
-openssl-sys = "0.9.103"
+openssl-sys = "=0.9.108"
 foreign-types-shared = "0.1"
 self_cell = "1"
+target-lexicon = "0.13.2"
 
 [features]
 extension-module = ["pyo3/extension-module"]
@@ -51,3 +52,7 @@ members = [
     "cryptography-x509",
     "cryptography-x509-verification",
 ]
+
+[patch.crates-io]
+target-lexicon = { git = "https://github.com/wasix-org/target-lexicon.git", branch = "wasix-0.13.2" }
+openssl-sys = { git = "https://github.com/wasix-org/rust-openssl.git", branch = "wasix-openssl-sys-v0.9.108" }
