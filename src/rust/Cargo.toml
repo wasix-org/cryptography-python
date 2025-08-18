@@ -30,7 +30,7 @@ openssl = "0.10.66"
 openssl-sys = "=0.9.108"
 foreign-types-shared = "0.1"
 self_cell = "1"
-target-lexicon = "0.13.2"
+target-lexicon = "=0.12.16"
 
 [features]
 extension-module = ["pyo3/extension-module"]
@@ -54,5 +54,5 @@ members = [
 ]
 
 [patch.crates-io]
-target-lexicon = { git = "https://github.com/wasix-org/target-lexicon.git", branch = "wasix-0.13.2" }
+target-lexicon = { git = "https://github.com/wasix-org/target-lexicon.git", branch = "wasix-0.12.16" }
 openssl-sys = { git = "https://github.com/wasix-org/rust-openssl.git", branch = "wasix-openssl-sys-v0.9.108" }

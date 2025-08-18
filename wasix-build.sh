@@ -20,15 +20,15 @@ rustup default wasix-dev
 
 export OPENSSL_DIR=$(realpath ../python-wasix-binaries/openssl)
 export PYO3_CROSS_LIB_DIR=$(realpath ../cpython-install/cpython/lib/)
+export CARGO_BUILD_TARGET=wasm32-wasmer-wasi-dl
 export RUSTFLAGS="-C link-arg=-Bsymbolic"
-maturin build --target wasm32-wasmer-wasi-dl --release \
-  --interpreter=$(realpath .cross-venv/bin/cross-python3)
+python -m build --wheel . --no-isolation
 
 rustup default "$PREV_DEFAULT"
 
-cd target/wheels
+cd dist
 mkdir temp
-unzip cryptography-45.0.4-cp313-abi3-any.whl -d temp
+unzip cryptography-43.0.3-cp37-abi3-any.whl -d temp
 wasm-opt \
   temp/cryptography/hazmat/bindings/_rust.abi3.so \
   -o temp/cryptography/hazmat/bindings/_rust.abi3.so \
@@ -36,8 +36,8 @@ wasm-opt \
   --enable-threads --enable-mutable-globals --enable-bulk-memory \
   --enable-bulk-memory-opt --enable-exception-handling \
   --no-validation
-rm cryptography-45.0.4-cp313-abi3-any.whl
+rm cryptography-43.0.3-cp37-abi3-any.whl
 cd temp
-zip -r ../cryptography-45.0.4-cp313-abi3-any.whl ./
+zip -r ../cryptography-43.0.3-cp37-abi3-any.whl ./
 cd ..
 rm -rf temp

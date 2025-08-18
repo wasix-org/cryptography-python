@@ -13,9 +13,10 @@ pip install crossenv pycparser build cffi
 python -m crossenv ../cpython-install/cpython/bin/python3.wasm ./.cross-venv --cc wasixcc
 source .cross-venv/bin/activate
 pip install cython build maturin
-build-pip install build cffi setuptools
+build-pip install build cffi setuptools maturin
 
 # maturin seems to like to install with a .wasm extension for some reason
-mv .cross-venv/cross/bin/maturin.wasm .cross-venv/cross/bin/maturin
-
-echo WARNING! You probably need a patched maturin binary for the wasm32-wasmer-wasi-dl target to work!
+rm .cross-venv/build/bin/maturin
+# instead we put in a patched version with WASIX compatibility
+cp ../python-wasix-binaries/bin/maturin .cross-venv/build/bin/maturin
+cp .cross-venv/build/bin/maturin .cross-venv/bin/maturin
